@@ -3,6 +3,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
+
+import uestc_login
 from uestc_login import login
 
 
@@ -10,6 +12,7 @@ def main():
     # 打开浏览器
     option = webdriver.FirefoxOptions()
     option.binary_location = 'C:\\Program Files\\Mozilla Firefox\\firefox.exe'
+    option.headless = True
     service = Service()
     print('正在打开浏览器')
     driver = webdriver.Firefox(service=service, options=option)
@@ -34,6 +37,6 @@ if __name__ == '__main__':
     username = input('请输入您的学号：')
     password = input('请输入您的密码：')
     url = main()
-    driver = login(username=username, password=password, url=url)
+    driver = login(username=username, password=password, url=url, browser=uestc_login.FIREFOX)
     # 示例：打印登陆后得到的cookies
     print(driver.get_cookies())

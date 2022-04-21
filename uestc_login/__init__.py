@@ -2,20 +2,42 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.service import Service as f_service
+from selenium.webdriver.chrome.service import Service as c_service
+from selenium.webdriver.edge.service import Service as e_service
 from selenium.webdriver.common.by import By
 from uestc_login.img_process import base64_to_img, get_png_edge, template_match, sobel_edge, read
 
 
-def login(username, password, url='https://idas.uestc.edu.cn/authserver/login'):
+FIREFOX = 0
+CHROME = 1
+EDGE = 2
+
+
+def login(username, password, url='https://idas.uestc.edu.cn/authserver/login', browser=FIREFOX, show=False):
     """通过学号和密码进行自动模拟登录，返回登录成功后的 webdriver"""
     print('----------------')
     print('准备开始自动登录')
-    option = webdriver.FirefoxOptions()
-    option.binary_location = 'C:\\Program Files\\Mozilla Firefox\\firefox.exe'
-    service = Service()
-    print('正在打开浏览器')
-    driver = webdriver.Firefox(service=service, options=option)
+
+    if browser == FIREFOX:
+        option = webdriver.FirefoxOptions()
+        option.headless = show
+        option.binary_location = 'C:\\Program Files\\Mozilla Firefox\\firefox.exe'
+        service = f_service()
+        print('正在打开浏览器')
+        driver = webdriver.Firefox(service=service, options=option)
+    elif browser == CHROME:
+        option = webdriver.ChromeOptions()
+        option.headless = show
+        service = c_service()
+        print('正在打开浏览器')
+        driver = webdriver.Chrome(service=service, options=option)
+    elif browser == EDGE:
+        option = webdriver.EdgeOptions()
+        option.headless = show
+        service = e_service()
+        print('正在打开浏览器')
+        driver = webdriver.Edge(service=service, options=option)
 
     print('正在进入网页')
     WAIT = WebDriverWait(driver, 10)
