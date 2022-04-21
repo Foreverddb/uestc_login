@@ -34,4 +34,6 @@ if __name__ == '__main__':
     username = input('请输入您的学号：')
     password = input('请输入您的密码：')
     url = main()
-    login(username=username, password=password, url=url)
+    driver = login(username=username, password=password, url=url)
+    # 示例：打印登陆后得到的cookies
+    print(driver.get_cookies())
