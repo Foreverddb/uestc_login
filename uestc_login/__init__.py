@@ -14,27 +14,27 @@ CHROME = 1
 EDGE = 2
 
 
-def login(username, password, url='https://idas.uestc.edu.cn/authserver/login', browser=FIREFOX, show=False):
+def login(username, password, url='https://idas.uestc.edu.cn/authserver/login', browser=FIREFOX, hide=False):
     """通过学号和密码进行自动模拟登录，返回登录成功后的 webdriver"""
     print('----------------')
     print('准备开始自动登录')
 
     if browser == FIREFOX:
         option = webdriver.FirefoxOptions()
-        option.headless = show
+        option.headless = hide
         option.binary_location = 'C:\\Program Files\\Mozilla Firefox\\firefox.exe'
         service = f_service()
         print('正在打开浏览器')
         driver = webdriver.Firefox(service=service, options=option)
     elif browser == CHROME:
         option = webdriver.ChromeOptions()
-        option.headless = show
+        option.headless = hide
         service = c_service()
         print('正在打开浏览器')
         driver = webdriver.Chrome(service=service, options=option)
     elif browser == EDGE:
         option = webdriver.EdgeOptions()
-        option.headless = show
+        option.headless = hide
         service = e_service()
         print('正在打开浏览器')
         driver = webdriver.Edge(service=service, options=option)

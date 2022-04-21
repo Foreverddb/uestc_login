@@ -47,10 +47,44 @@
 * 通过自动登录实现免抓包进行的一卡通记录信息查询
 * ......
 
-Fork 此仓库以立即开始使用。
+Fork 此仓库或下载代码压缩包以立即开始使用， [点此查看使用指南](#开始使用)。
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+
+
+<!-- GETTING STARTED -->
+## 开始使用
+
+此项目使用非常简单，直接作为外部模块引入使用。
+
+需要安装对应的浏览器驱动，目前貌似只有 FireFox 能正常运行，其他浏览器都加载不出页面来，还在适配中。
+
+Firefox 对应驱动下载： [geckodriver](https://github.com/mozilla/geckodriver/releases)
+
+### 作为模块引入
+
+
+```python
+import uestc_login
+```
+使用模块的方法：
+
+`login() 方法` 返回一个 WebDriver 对象，可以通过 `driver.get_cookies()` 等方法获取登陆后页面的cookie等数据
+- username： 学号
+- password： 密码
+- url： 需要登陆的网址，一般需要通过学校各种网站获取，例如网上服务大厅的认证网址为https://idas.uestc.edu.cn/authserver/login?service=https%3A%2F%2Feportal.uestc.edu.cn%3A443%2Flogin%3Fservice%3Dhttps%3A%2F%2Feportal.uestc.edu.cn%2Fnew%2Findex.html%3Fbrowser%3Dno
+- browser: 使用的浏览器，需要安装对应的浏览器驱动，可选（默认为 Firefox）
+- hide： 是否以无UI界面形式运行，可选（默认为 False）
+
+```python
+import uestc_login
+uestc_login.login(username='2021XXXXXXXXX', 
+                  password='test', 
+                  url='https://idas.uestc.edu.cn/authserver/login',
+                  browser=uestc_login.FIREFOX,
+                  hide=False) 
+```
 
 
 ### 实现思路
@@ -64,19 +98,6 @@ Fork 此仓库以立即开始使用。
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- GETTING STARTED -->
-## 开始使用
-
-此项目使用非常简单，可以直接当作普通的 python 脚本来直接运行使用，也可以作为外部模块引入使用。
-
-### 作为模块引入
-
-
-  ```python
-import uestc_login
-  ```
 
 <!-- LICENSE -->
 ## License
