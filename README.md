@@ -17,18 +17,15 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 
-
-
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
 
   <h1 align="center">UESTC_Login</h1>
+  
+  [![Forks][forks-shield]][forks-url]
+  [![Stargazers][stars-shield]][stars-url]
+  [![Issues][issues-shield]][issues-url]
+  [![MIT License][license-shield]][license-url]
 
   <p align="center">
     电子科技大学统一身份认证自动化模拟登陆，可适用于网上服务大厅、教务系统、精准思政平台等众需要靠统一身份认证进行验证的网站或平台。
