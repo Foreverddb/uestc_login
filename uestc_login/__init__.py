@@ -2,19 +2,13 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.firefox.service import Service as f_service
-from selenium.webdriver.chrome.service import Service as c_service
-from selenium.webdriver.edge.service import Service as e_service
 from selenium.webdriver.common.by import By
 from uestc_login.img_process import base64_to_img, get_png_edge, template_match, sobel_edge, read
+from uestc_login.path_process import check_exe_path, check_binary_location, CHROME, FIREFOX, EDGE
 
 
-FIREFOX = 0
-CHROME = 1
-EDGE = 2
-
-
-def login(username, password, url='https://idas.uestc.edu.cn/authserver/login', browser=FIREFOX, hide=False):
+def login(username, password, url='https://idas.uestc.edu.cn/authserver/login', browser=FIREFOX, hide=False,
+          binary_location=None, executable_path=None):
     """通过学号和密码进行自动模拟登录，返回登录成功后的 webdriver"""
     print('----------------')
     print('准备开始自动登录')
@@ -22,22 +16,26 @@ def login(username, password, url='https://idas.uestc.edu.cn/authserver/login', 
     if browser == FIREFOX:
         option = webdriver.FirefoxOptions()
         option.headless = hide
-        option.binary_location = 'C:\\Program Files\\Mozilla Firefox\\firefox.exe'
-        service = f_service()
+        option = check_binary_location(option, binary_location)
+
         print('正在打开浏览器')
-        driver = webdriver.Firefox(service=service, options=option)
+        driver = webdriver.Firefox(service=check_exe_path(browser, executable_path), options=option)
     elif browser == CHROME:
         option = webdriver.ChromeOptions()
+        option.add_experimental_option('excludeSwitches',
+                                        ['enable-automation'])
         option.headless = hide
-        service = c_service()
+        option = check_binary_location(option, binary_location)
+
         print('正在打开浏览器')
-        driver = webdriver.Chrome(service=service, options=option)
+        driver = webdriver.Chrome(service=check_exe_path(browser, executable_path), options=option)
     elif browser == EDGE:
         option = webdriver.EdgeOptions()
         option.headless = hide
-        service = e_service()
+        option = check_binary_location(option, binary_location)
+
         print('正在打开浏览器')
-        driver = webdriver.Edge(service=service, options=option)
+        driver = webdriver.Edge(service=check_exe_path(browser, executable_path), options=option)
 
     print('正在进入网页')
     WAIT = WebDriverWait(driver, 10)
