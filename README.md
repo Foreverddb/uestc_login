@@ -78,6 +78,8 @@ import uestc_login
 - url： 需要登陆的网址，一般需要通过学校各种网站获取，例如网上服务大厅的认证网址为https://idas.uestc.edu.cn/authserver/login?service=https%3A%2F%2Feportal.uestc.edu.cn%3A443%2Flogin%3Fservice%3Dhttps%3A%2F%2Feportal.uestc.edu.cn%2Fnew%2Findex.html%3Fbrowser%3Dno
 - browser: 使用的浏览器，需要安装对应的浏览器驱动，可选（默认为 Firefox）
 - hide： 是否以无UI界面形式运行，可选（默认为 False）
+- executable_path： 浏览器驱动路径， 可选（默认为系统提供的路径， 一般配了环境变量就不需要此参数）
+- binary_location： 浏览器路径，可选（默认为系统提供的路径， 一般正常默认安装浏览器就不需要此参数）
 
 ```python
 import uestc_login
@@ -85,7 +87,9 @@ uestc_login.login(username='2021XXXXXXXXX',
                   password='test', 
                   url='https://idas.uestc.edu.cn/authserver/login',
                   browser=uestc_login.FIREFOX,
-                  hide=False) 
+                  hide=False,
+                  executable_path='D:\\WebDriver\\geckodriver-v0.31.0-win32\\geckodriver.exe',
+                  binary_location='C:\\Program Files\\Mozilla Firefox\\firefox.exe') 
 ```
 
 
