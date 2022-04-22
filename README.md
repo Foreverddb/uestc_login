@@ -58,6 +58,8 @@ Fork 此仓库或下载代码压缩包以立即开始使用， [点此查看使�
 
 此项目使用非常简单，直接作为外部模块引入使用。
 
+实测支持 Windows，CentOS7, Unbuntu18.04 ，FireFox 浏览器可用。
+
 需要安装对应的浏览器驱动，目前貌似只有 FireFox 能正常运行，其他浏览器都加载不出页面来，还在适配中。
 
 Firefox 对应驱动下载： [geckodriver](https://github.com/mozilla/geckodriver/releases)
