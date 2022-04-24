@@ -41,8 +41,10 @@
 
 电子科技大学诸多校内网站都采用统一身份认证页面来进行验证，这意味着只需要一个登陆模板，就可以自动登陆大部分相关网站，自动获取其登录cookie并以此实现更多功能。
 
+自动登陆网上服务大厅： [示例](https://github.com/Foreverddb/uestc_login/blob/master/%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E7%BD%91%E4%B8%8A%E6%9C%8D%E5%8A%A1%E5%A4%A7%E5%8E%85%E7%A4%BA%E4%BE%8B.py)
+
 例如:
-* 通过自动登录实现免抓包来进行的每日健康报送 [示例](https://github.com/Foreverddb/uestc_login/blob/master/%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E7%BD%91%E4%B8%8A%E6%9C%8D%E5%8A%A1%E5%A4%A7%E5%8E%85%E7%A4%BA%E4%BE%8B.py)
+* 通过自动登录实现免抓包来进行的每日健康报送 
 * 通过自动登录实现免跳转获取的本学期考试安排
 * 通过自动登录实现免抓包进行的一卡通记录信息查询
 * ......
@@ -73,13 +75,13 @@ import uestc_login
 使用模块的方法：
 
 `login() 方法` 返回一个 WebDriver 对象，可以通过 `driver.get_cookies()` 等方法获取登陆后页面的cookie等数据
-- username： 学号
-- password： 密码
-- url： 需要登陆的网址，一般需要通过学校各种网站获取，例如网上服务大厅的认证网址为https://idas.uestc.edu.cn/authserver/login?service=https%3A%2F%2Feportal.uestc.edu.cn%3A443%2Flogin%3Fservice%3Dhttps%3A%2F%2Feportal.uestc.edu.cn%2Fnew%2Findex.html%3Fbrowser%3Dno
-- browser: 使用的浏览器，需要安装对应的浏览器驱动，可选（默认为 Firefox）
-- hide： 是否以无UI界面形式运行，可选（默认为 False, 在linux命令行界面上必须为True）
-- executable_path： 浏览器驱动路径， 可选（默认为系统提供的路径， 一般配了环境变量就不需要此参数）
-- binary_location： 浏览器路径，可选（默认为系统提供的路径， 一般正常默认安装浏览器就不需要此参数）
+- `username：` 学号
+- `password：` 密码
+- `url：` 需要登陆的网址，一般需要通过学校各种网站获取，例如网上服务大厅的认证网址为https://idas.uestc.edu.cn/authserver/login?service=https%3A%2F%2Feportal.uestc.edu.cn%3A443%2Flogin%3Fservice%3Dhttps%3A%2F%2Feportal.uestc.edu.cn%2Fnew%2Findex.html%3Fbrowser%3Dno
+- `browser:` 使用的浏览器，需要安装对应的浏览器驱动，可选（默认为 Firefox）
+- `hide：` 是否以无UI界面形式运行，可选（默认为 False, 在linux命令行界面上必须为True）
+- `executable_path：` 浏览器驱动路径， 可选（默认为系统提供的路径， 一般配了环境变量就不需要此参数）
+- `binary_location：` 浏览器路径，可选（默认为系统提供的路径， 一般正常默认安装浏览器就不需要此参数）
 
 ```python
 import uestc_login
